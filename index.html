@@ -20,11 +20,6 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Custom gradient for the hero section background */
-        .hero-gradient {
-            background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 119, 198, 0.3), rgba(255, 255, 255, 0));
-        }
-
         /* A subtle animation for cards and buttons on hover */
         .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -37,6 +32,19 @@
         /* Style for the mobile menu */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
+        }
+
+        /* Styles for Hero Slider */
+        .slider-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 1.5s ease-in-out;
+            opacity: 0;
+        }
+        .slider-image.active {
+            opacity: 1;
         }
     </style>
 </head>
@@ -55,6 +63,7 @@
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="#inicio" class="text-gray-300 hover:text-indigo-400 transition-colors duration-300">Inicio</a>
                     <a href="#servicios" class="text-gray-300 hover:text-indigo-400 transition-colors duration-300">Servicios</a>
+                    <a href="#galeria" class="text-gray-300 hover:text-indigo-400 transition-colors duration-300">Galería</a>
                     <a href="#nosotros" class="text-gray-300 hover:text-indigo-400 transition-colors duration-300">Sobre Nosotros</a>
                     <a href="#contacto" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300 hover-lift">Contáctanos</a>
                 </nav>
@@ -71,6 +80,7 @@
         <div id="mobile-menu" class="md:hidden hidden flex-col items-center space-y-4 py-4 bg-gray-800">
             <a href="#inicio" class="text-gray-300 hover:text-indigo-400">Inicio</a>
             <a href="#servicios" class="text-gray-300 hover:text-indigo-400">Servicios</a>
+            <a href="#galeria" class="text-gray-300 hover:text-indigo-400">Galería</a>
             <a href="#nosotros" class="text-gray-300 hover:text-indigo-400">Sobre Nosotros</a>
             <a href="#contacto" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg">Contáctanos</a>
         </div>
@@ -78,12 +88,23 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="inicio" class="relative py-20 md:py-32 hero-gradient">
-            <div class="container mx-auto px-6 text-center">
+        <section id="inicio" class="relative h-screen flex items-center justify-center text-center">
+            <!-- Background Image Slider -->
+            <div id="hero-slider" class="absolute inset-0 overflow-hidden">
+                <images/st3.webp" alt="[Imagen de reparación de hardware]" class="slider-image active">
+                <images/st4.webp" alt="[Imagen de un centro de datos]" class="slider-image">
+                <images/st2.webp" alt="[Imagen de una persona dando soporte técnico]" class="slider-image">
+                <images/st1.webp" alt="[Imagen de código en una pantalla]" class="slider-image">
+            </div>
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gray-900 bg-opacity-60"></div>
+            
+            <!-- Content -->
+            <div class="relative z-10 px-6">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4">
                     Bienvenidos a <span class="text-indigo-400">Soluciones Tecnológicas Alvarado</span>
                 </h1>
-                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
                     Tu socio de confianza en el mundo digital. Ofrecemos una amplia gama de servicios para satisfacer tus necesidades tecnológicas.
                 </p>
                 <a href="#servicios" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300 hover-lift">Ver Nuestros Servicios</a>
@@ -161,13 +182,43 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Gallery Section -->
+        <section id="galeria" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Galería</h2>
+                    <p class="text-gray-400 mt-2">Un vistazo a nuestro trabajo y soluciones.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 rounded-xl overflow-hidden hover-lift border border-gray-700">
+                        <img src="https://placehold.co/600x400/1F2937/818CF8?text=Reparaci%C3%B3n+de+Hardware" alt="[Imagen de reparación de un computador]" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Reparación de Hardware</h3>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl overflow-hidden hover-lift border border-gray-700">
+                        <img src="https://placehold.co/600x400/1F2937/818CF8?text=Instalaci%C3%B3n+de+Servidores" alt="[Imagen de instalación de servidores]" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                             <h3 class="text-white font-semibold">Instalación de Servidores</h3>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-xl overflow-hidden hover-lift border border-gray-700">
+                        <img src="https://placehold.co/600x400/1F2937/818CF8?text=Cableado+Estructurado" alt="[Imagen de cables de red organizados]" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                             <h3 class="text-white font-semibold">Cableado Estructurado</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- About Us Section -->
-        <section id="nosotros" class="py-20 bg-gray-800">
+        <section id="nosotros" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <img src="https://placehold.co/600x400/1F2937/4F46E5?text=Sobre+Nosotros" alt="Nuestro Equipo" class="rounded-xl shadow-2xl">
+                        <img src="https://placehold.co/600x400/1F2937/4F46E5?text=Nuestro+Equipo" alt="[Imagen de un equipo de trabajo tecnológico]" class="rounded-xl shadow-2xl">
                     </div>
                     <div>
                         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Sobre Nosotros</h2>
@@ -185,15 +236,15 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contacto" class="py-20 bg-gray-900">
+        <section id="contacto" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6">
                  <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-white">Ponte en Contacto con Nosotros</h2>
-                    <p class="text-gray-400 mt-2">Estamos listos para escucharte. Completa el formulario o utiliza nuestros datos de contacto.</p>
+                    <p class="text-gray-400 mt-2">Estamos aquí para ayudarte. Completa el formulario o utiliza nuestros datos de contacto.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     <!-- Form -->
-                    <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-700">
                         <form>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                                 <input type="text" placeholder="Tu Nombre" class="bg-gray-700 text-white w-full p-3 rounded-lg border border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
@@ -212,7 +263,7 @@
                     </div>
                     <!-- Contact Info -->
                     <div class="flex flex-col justify-center">
-                        <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+                        <div class="bg-gray-900 p-8 rounded-xl border border-gray-700">
                             <h3 class="text-2xl font-bold text-white mb-4">Información de Contacto</h3>
                             <div class="space-y-4 text-gray-400">
                                 <p class="flex items-center">
@@ -227,6 +278,10 @@
                                      <svg class="w-6 h-6 mr-3 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                     <span>123 Calle Principal, San José, Costa Rica</span>
                                 </p>
+                                <p class="flex items-center">
+                                     <svg class="w-6 h-6 mr-3 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span>Lunes a Viernes de 9:00 a 18:00</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -238,25 +293,35 @@
     <!-- Footer -->
     <footer class="bg-gray-900 border-t border-gray-800">
         <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+             <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-indigo-400 transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"></path></svg>
+                </a>
+                <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-indigo-400 transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.227-1.667 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.148-3.227 1.669-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg>
+                </a>
+                <a href="#" aria-label="WhatsApp" class="text-gray-400 hover:text-indigo-400 transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.46 3.48 1.32 4.95L2 22l5.25-1.38c1.41.79 3.02 1.22 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zM17.5 14.3c-.28-.14-1.65-.81-1.91-.9-.26-.09-.45-.14-.64.14-.19.28-.72.9-.89 1.08-.16.19-.32.21-.6.07-.28-.14-1.18-.44-2.25-1.39- .84-.74-1.4-1.65-1.57-1.93s-.18-.45-.04-.59c.13-.13.28-.34.42-.51.13-.16.18-.28.28-.46.09-.19.05-.37-.02-.51-.07-.14-.64-1.54-.88-2.1-.24-.56-.48-.48-.64-.49-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.35-.26.28-1 .98-1 2.38 0 1.4 1.03 2.75 1.17 2.94s2 3.08 4.86 4.26c.71.3 1.27.48 1.7.62.78.23 1.48.2 2.05.12.64-.09 1.65-.68 1.88-1.34s.24-1.24.16-1.34c-.07-.1-.26-.16-.54-.3z"></path></svg>
+                </a>
+            </div>
             <p>&copy; 2025 Soluciones Tecnológicas Alvarado. Todos los derechos reservados.</p>
             <p class="mt-2">Diseñado por <span class="text-indigo-400">W Studio</span> en colaboración con Gemini.</p>
         </div>
     </footer>
     
-    <!-- JavaScript for Mobile Menu -->
+    <!-- JavaScript for Mobile Menu & Hero Slider -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuLinks = document.querySelectorAll('#mobile-menu a, header nav a');
 
-            // Toggle menu visibility
             menuBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
                 mobileMenu.classList.toggle('flex');
             });
 
-            // Close menu when a link is clicked
             menuLinks.forEach(link => {
                 link.addEventListener('click', () => {
                    if (!mobileMenu.classList.contains('hidden')) {
@@ -265,6 +330,20 @@
                    }
                 });
             });
+
+            // Hero Slider
+            const sliderImages = document.querySelectorAll('#hero-slider .slider-image');
+            if (sliderImages.length > 0) {
+                let currentImageIndex = 0;
+                
+                function showNextImage() {
+                    sliderImages[currentImageIndex].classList.remove('active');
+                    currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
+                    sliderImages[currentImageIndex].classList.add('active');
+                }
+
+                setInterval(showNextImage, 5000); // Change image every 5 seconds
+            }
         });
     </script>
 </body>
